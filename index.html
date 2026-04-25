@@ -4,95 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FiveM Whitelist - D'Serra Familia</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Font */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('uhui.png');
+            background-attachment: fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 40px 0;
+        }
+
+        /* --- LANDING VIEW --- */
+        #landing-view { display: flex; flex-direction: column; align-items: center; }
+        .logo-area { text-align: center; margin-bottom: 20px; }
+        .main-logo { width: 100px; filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.4)); margin-bottom: -45px; }
+        h1 { font-size: 2.8rem; letter-spacing: 1px; color: #e74c3c; text-transform: uppercase; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.8), transparent); padding: 15px 50px; display: inline-block; margin: 20px 0; }
+        .btn-masuk-awal { width: fit-content; padding: 15px 40px; margin-top: 20px; background-color: #e74c3c; color: white; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn-masuk-awal:hover { background-color: #c0392b; transform: scale(1.05); }
+
+        /* --- REGISTRATION VIEW --- */
+        #registration-view { display: none; width: 100%; max-width: 480px; padding: 0 20px; }
+        .login-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px 40px; border-radius: 15px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.6); animation: slideUp 0.5s ease-out; }
+        .mini-logo { width: 60px; margin-bottom: -5px; }
+        h2 { font-size: 1.4rem; margin-bottom: 20px; text-align: center; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; width: 100%; }
+
+        /* --- FORM STYLING --- */
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 6px; text-transform: uppercase; }
+        
+        .input-group input, .input-group textarea, .radio-container { 
+            width: 100%; 
+            padding: 12px; 
+            background: rgba(0, 0, 0, 0.4); /* Latar hitam transparan */
+            border: 1px solid #333; 
+            border-radius: 6px; 
+            color: #fff; 
+            outline: none; 
+            transition: 0.3s; 
+        }
+
+        .input-group input:focus, .input-group textarea:focus { border-color: #e74c3c; }
+        
+        /* Gaya khusus untuk pembungkus Pilihan Ganda */
+        .radio-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .radio-container label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 0;
+            text-transform: none; /* Agar tidak otomatis kapital semua */
+        }
+
+        .radio-container input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        textarea { height: 80px; resize: none; }
+        .btn-register { width: 100%; padding: 14px; background-color: #e74c3c; border: none; border-radius: 6px; color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; margin-top: 10px; }
+        .btn-register:hover { background-color: #c0392b; }
+        .cancel-text { text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem; cursor: pointer; }
+        .cancel-text:hover { color: #fff; }
+
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
 </head>
 <body>
 
-    <div class="login-container">
+    <div id="landing-view">
+        <div class="logo-area">
+            <img src="ntah.png" alt="Logo" class="main-logo">
+            <h1>𝔇 ' 𝔏𝔲𝔠𝔦𝔞𝔫𝔬 𝔉𝔞𝔪𝔦𝔩𝔦𝔞</h1>
+            <p>Roleplay Community</p>
+        </div>
+        <button class="btn-masuk-awal" onclick="bukaForm()">MULAI PENDAFTARAN</button>
+    </div>
+
+    <div id="registration-view">
         <div class="login-box">
             <div class="logo-area">
-                <img src="hhhh.png" alt="D'Serra Familia Logo" class="main-logo">
-                <p>Roleplay Community</p>
+                <img src="ntah.png" alt="Logo" class="mini-logo">
+                <p>𝔇 ' 𝔏𝔲𝔠𝔦𝔞𝔫𝔬 𝔉𝔞𝔪𝔦𝔩𝔦𝔞</p>
             </div>
-            
-            <h2> anggota keluarga baru</h2>
-            
-            
-               <form id="whitelistForm">
-    <div class="input-group">
-        <label>Nama Karakter (IC)</label>
-        <input type="text" id="namaIC" placeholder="Contoh: Budi Santoso" required>
+            <h2>Pendaftaran Anggota Baru</h2>
+            <form id="whitelistForm">
+                <div class="input-group">
+                    <label>Nama Karakter (IC)</label>
+                    <input type="text" id="namaIC" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="input-group">
+                    <label>USERNAME/ID Discord</label>
+                    <input type="text" id="idDiscord" placeholder="user#0000" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Apakah kamu serius jadi bagian DLF?</label>
+                    <div class="radio-container">
+                        <label><input type="radio" name="pengalaman" value="ya" required> Sudah</label>
+                        <label><input type="radio" name="pengalaman" value="tidak"> Belum</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Apakah kamu siap dengan rules yang ada di DLF?</label>
+                    <div class="radio-container">
+                        <label><input type="radio" name="pahamRules" value="siap" required> Paham</label>
+                        <label><input type="radio" name="pahamRules" value="Tidak"> Tidak</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tanggal Lahir (IC)</label>
+                    <input type="date" id="umurOOC" required>
+                </div>
+                <div class="input-group">
+                    <label>Alasan ingin bergabung?</label>
+                    <textarea id="ceritaIC" placeholder="(Wajib diisi)" required></textarea>
+                </div>
+                <button type="submit" class="btn-register">Kirim Pendaftaran</button>
+                <p class="cancel-text" onclick="kembaliKeHome()">Batal & Kembali</p>
+                <div class="input-group">
+
+                    <div class="input-group">
+    <label>USERNAME/ID Discord</label>
+    <input type="text" id="idDiscord" placeholder="Contoh: budisantoso atau 122358..." required>
+    <small style="color: #e74c3c; font-size: 0.7rem;">*Pastikan sudah join server Discord kami!</small>
+</div>
+                    
+            </form>
+        </div>
     </div>
 
-    <div class="input-group">
-        <label>USERNAME/ID Discord</label>
-        <input type="text" id="idDiscord" placeholder="user#0000" required>
-    </div>
+    <script>
+       document.getElementById('whitelistForm').addEventListener('submit', async function(e) { // Tambahkan 'async' di sini
+    e.preventDefault();
+    
+    const webhookURL = "https://discord.com/api/webhooks/1497465421790449724/T3MTcY38hQxdaBVU0WyTDmfzKL4jIUrTYMlTLcLwL-QKvXX6n3lOD3ncbkE-6vwi1HoP";
+    const botLokalURL = "http://localhost:3000/give-role"; // URL Bot yang kamu jalankan di CMD
 
-    <div class="input-group">
-        <label>tanggal lahir (IC)</label>
-        <input type="date" id="umurOOC" placeholder="ISI SESUAI IC KALIAN" required>
-    </div>
-
-    <div class="input-group">
-        <label>apakah kamu serius untuk bergabung di keluarga ini?/alasan kalian masuk ke sini</label>
-        <textarea id="ceritaIC" placeholder="(note:wajib di isi)"></textarea>
-    </div>
-
-     
-    <button type="submit" class="btn-register">Kirim Pendaftaran</button>
-</formx>
-
-<script>
-document.getElementById('whitelistForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-
-    // 1. PASTIKAN LINK INI ASLI DARI DISCORD (Copy-Paste pelan-pelan)
-    const webhookURL = "https://discord.com/api/webhooks/1497465421790449724/T3MTcY38hQxdaBVU0WyTDmfzKL4jIUrTYMlTLcLwL-QKvXX6n3lOD3ncbkE-6vwi1HoP"; 
-
-    // 2. AMBIL DATA (Pastikan ID 'namaIC', 'idDiscord', dll ada di tag <input> kamu)
-    const nama = document.getElementById('namaIC').value;
-    const discord = document.getElementById('idDiscord').value;
-    const umur = document.getElementById('umurOOC').value;
-    const cerita = document.getElementById('ceritaIC').value;
+    const discordID = document.getElementById('idDiscord').value; // Ambil ID Discord dari input
+    const expVal = document.querySelector('input[name="pengalaman"]:checked').value;
+    const rulesVal = document.querySelector('input[name="pahamRules"]:checked').value;
 
     const pesan = {
-        username: "𝔇 ' 𝔏𝔲𝔠𝔦𝔞𝔫𝔬 𝔉𝔞𝔪𝔦𝔩𝔦𝔞",
+        username: "System Rekrutmen 𝔇'𝔏",
         embeds: [{
-            title: "anggota keluarga baru",
+            title: "Pendaftaran Anggota Baru",
             color: 16727614,
             fields: [
-                { name: "Nama IC", value: nama, inline: true },
-                { name: "ID Discord", value: discord, inline: true },
-                { name: "tgl lahir (ic)", value: umur, inline: true },
-                { name: "alasan masuk 𝔇 ' 𝔏𝔲𝔠𝔦𝔞𝔫𝔬 𝔉𝔞𝔪𝔦𝔩𝔦𝔞", value: cerita }
+                { name: "Nama IC", value: document.getElementById('namaIC').value, inline: true },
+                { name: "Discord", value: discordID, inline: true },
+                { name: "Tgl Lahir", value: document.getElementById('umurOOC').value, inline: true },
+                { name: "Pengalaman", value: expVal, inline: true },
+                { name: "Paham Rules", value: rulesVal, inline: true },
+                { name: "Alasan", value: document.getElementById('ceritaIC').value }
             ]
         }]
     };
 
-    fetch(webhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pesan)
-    })
-    .then(res => {
-        if(res.ok) {
+    try {
+        // 1. Kirim ke Webhook Discord (Untuk Log Laporan)
+        const resWebhook = await fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pesan)
+        });
+
+        // 2. Kirim ke Bot Lokal (Untuk Kasih Role Otomatis)
+        const resBot = await fetch(botLokalURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: discordID })
+        });
+
+        if (resWebhook.ok) {
+            // Jika berhasil, pindah ke halaman sukses
             window.location.href = "sukses.html";
         } else {
-            alert("Discord nolak! Cek link Webhook kamu.");
+            alert("Pendaftaran terkirim, tapi gagal memberikan role otomatis.");
         }
-    })
-    .catch(err => {
-        alert("Error: " + err + ". Coba pakai Live Server!");
-    });
+
+    } catch (err) {
+        console.error("Error:", err);
+        alert("Terjadi kesalahan. Pastikan Bot di PC kamu sudah menyala!");
+    }
 });
-</script>
 
-                
-            </form>
-            
-        </div>
-    </div>
+// Fungsi untuk memunculkan Form Pendaftaran
+function bukaForm() {
+    document.getElementById('landing-view').style.display = 'none';
+    document.getElementById('registration-view').style.display = 'block';
+}
 
+// Fungsi untuk kembali ke halaman depan
+function kembaliKeHome() {
+    document.getElementById('registration-view').style.display = 'none';
+    document.getElementById('landing-view').style.display = 'flex';
+}
+    </script>
 </body>
 </html>
